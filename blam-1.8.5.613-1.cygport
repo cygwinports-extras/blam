@@ -1,0 +1,4 @@
+SVN_REV=${PVP[3]}
+inherit gnome2 svn
+
+HOMEPAGE="http://www.cmartin.tk/blam.html"
