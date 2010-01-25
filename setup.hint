@@ -1,0 +1,5 @@
+category: Gnome Web
+requires: libgtk2.0_0 libX11_6 mono mono-gconf-sharp2.0 mono-glade-sharp2.0 mono-glib-sharp2.0 mono-gnome-sharp2.24 mono-gtk-sharp2.0 mono-NDesk-DBus-GLib1.0 mono-NDesk-DBus1.0 mono-pango-sharp2.0 mono-webkit-sharp1.1
+sdesc: "GNOME RSS reader"
+ldesc: "Blam is a RSS aggregator written in C# using Mono, GTK# and a
+handful of simplified RSS and Atom libraries."

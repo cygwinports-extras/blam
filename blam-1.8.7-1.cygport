@@ -1,0 +1,9 @@
+inherit gnome2 mono
+
+DESCRIPTION="GNOME RSS reader"
+HOMEPAGE="http://cmartin.tk/blam.html"
+SRC_URI="http://cmartin.tk/blam/${P}.tar.bz2"
+# git.g.o: update for recent webkit(-sharp) changes
+PATCH_URI="1.8.7-dllmap-cygwin.patch
+           1.8.7-vpath.patch
+           http://git.gnome.org/cgit/blam/patch/index.html?id=4a5c831"

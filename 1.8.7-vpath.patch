@@ -1,6 +1,6 @@
---- origsrc/blam/Makefile.am	2008-06-23 19:06:04.000000000 -0500
-+++ src/blam/Makefile.am	2008-06-23 19:19:55.500000000 -0500
-@@ -34,7 +34,7 @@
+--- origsrc/blam-1.8.7/Makefile.am	2009-04-18 07:52:32.000000000 -0500
++++ src/blam-1.8.7/Makefile.am	2009-12-07 03:03:45.577719100 -0600
+@@ -34,7 +34,7 @@ bindir=$(prefix)/bin
  man_MANS = blam.1
  
  blam: blam.in config.log
@@ -9,18 +9,9 @@
  
  configdir = $(prefix)/lib/blam
  config_DATA = blam.exe.config
---- origsrc/blam/blam.exe.config	2008-06-23 19:06:04.000000000 -0500
-+++ src/blam/blam.exe.config	2008-06-23 19:06:42.671875000 -0500
-@@ -1,4 +1,4 @@
- <configuration>
--  <dllmap dll="gdk-x11-2.0" target="libgdk-x11-2.0.so.0"/>
--  <dllmap dll="libX11" target="libX11.so.6"/>
-+  <dllmap dll="gdk-x11-2.0" target="cyggdk-x11-2.0-0.dll"/>
-+  <dllmap dll="libX11" target="cygX11-6.dll"/>
- </configuration>
---- origsrc/blam/lib/Makefile.am	2008-06-23 19:06:00.000000000 -0500
-+++ src/blam/lib/Makefile.am	2008-06-23 19:15:12.312500000 -0500
-@@ -17,10 +17,10 @@
+--- origsrc/blam-1.8.7/lib/Makefile.am	2009-04-18 07:52:32.000000000 -0500
++++ src/blam-1.8.7/lib/Makefile.am	2009-12-07 03:04:21.582581900 -0600
+@@ -17,10 +17,10 @@ EXTRA_DIST = $(extra_lib_DATA) \
  all: AtomFeed.dll RSSFeed.dll
  
  AtomFeed.dll: AtomFeed.cs
@@ -33,28 +24,28 @@
  
  install-data-local: AtomFeed.dll RSSFeed.dll
  	$(mkinstalldirs) $(DESTDIR)$(feed_LIBDIR)
---- origsrc/blam/src/Makefile.am	2008-06-23 19:06:00.000000000 -0500
-+++ src/blam/src/Makefile.am	2008-06-23 19:18:55.875000000 -0500
-@@ -3,7 +3,7 @@
+--- origsrc/blam-1.8.7/src/Makefile.am	2009-04-18 07:55:35.000000000 -0500
++++ src/blam-1.8.7/src/Makefile.am	2009-12-07 03:05:31.361503600 -0600
+@@ -3,7 +3,7 @@ CSC = $(MCS)
  FLAGS = /debug
  
  RESOURCES = \
 -	    -resource:blam.glade,blam.glade                                  \
-+	    -resource:$(srcdir)/blam.glade,blam.glade                                  \
++	    -resource:$(srcdir)/blam.glade,blam.glade                              \
  	    -resource:$(top_srcdir)/icons/blam-add-news.png,blam-add-news.png      \
  	    -resource:$(top_srcdir)/icons/blam-edit-news.png,blam-edit-news.png
  
-@@ -48,11 +48,11 @@
+@@ -49,11 +49,11 @@ endif
  Defines.cs: Defines.cs.in ../config.log
  	sed -e "s|\@version\@|$(VERSION)|" \
  	    -e "s|\@datadir\@|$(datadir)|" \
 -	    < Defines.cs.in > Defines.cs
-+	    < $< > Defines.cs
++	    < $< > $@
  
  blamlibdir = $(prefix)/lib/blam
  blam.exe: $(BLAM_CSFILES) $(GENERATED_CSFILES) blam.glade 
 -	$(CSC) $(FLAGS) -lib:$(top_srcdir)/lib $(RESOURCES) $(BLAM_LIBS) $(ASSEMBLIES) $(BLAM_CSFILES) $(GENERATED_CSFILES) -out:$@
-+	$(CSC) $(FLAGS) -lib:$(top_srcdir)/lib $(RESOURCES) $(BLAM_LIBS) $(ASSEMBLIES) $(addprefix $(srcdir)/, $(BLAM_CSFILES)) $(GENERATED_CSFILES) -out:$@
++	$(CSC) $(FLAGS) -lib:$(top_srcdir)/lib $(RESOURCES) $(BLAM_LIBS) $(ASSEMBLIES) $(addprefix $(srcdir)/,$(BLAM_CSFILES)) $(GENERATED_CSFILES) -out:$@
  
  all: blam.exe
  

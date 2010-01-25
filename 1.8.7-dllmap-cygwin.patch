@@ -1,0 +1,9 @@
+--- origsrc/blam-1.8.7/blam.exe.config	2009-04-18 07:52:32.000000000 -0500
++++ src/blam-1.8.7/blam.exe.config	2009-12-07 03:02:17.453165500 -0600
+@@ -1,4 +1,4 @@
+ <configuration>
+-  <dllmap dll="gdk-x11-2.0" target="libgdk-x11-2.0.so.0"/>
+-  <dllmap dll="libX11" target="libX11.so.6"/>
++  <dllmap dll="gdk-x11-2.0" target="cyggdk-x11-2.0-0.dll"/>
++  <dllmap dll="libX11" target="cygX11-6.dll"/>
+ </configuration>
